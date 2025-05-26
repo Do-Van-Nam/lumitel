@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/widgets/download_section_widget.dart';
 import '../widgets/header_widget.dart';
 import '../widgets/hero_section_widget.dart';
 import '../widgets/services_section_widget.dart';
@@ -70,6 +71,11 @@ class LandingScreen extends StatelessWidget {
                   ],
                 ),
               ],
+            ),
+            // Download Section
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 80),
+              child: DownloadSectionWidget(),
             ),
             ServicesSectionWidget(),
             FeedbackSectionWidget(),

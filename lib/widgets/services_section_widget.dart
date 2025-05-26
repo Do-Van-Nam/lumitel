@@ -55,14 +55,20 @@ class ServicesSectionWidget extends StatelessWidget {
   }
 
   Widget _buildServiceCard(String imageUrl, String title, String description, bool isPrimary) {
-    return Container(
+    bool isHovered = false;
+    return StatefulBuilder(
+      builder: (context, setState) {
+        return MouseRegion(
+          onEnter: (_) => setState(() => isHovered = true),
+          onExit: (_) => setState(() => isHovered = false),
+          child: Container(
       width: 314,
       padding: EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Color(0xFFF7F9FC),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isPrimary ? AppColors.primary : AppColors.neutral4,
+          color: isHovered ? AppColors.primary : AppColors.neutral4,
         ),
         boxShadow: [
           BoxShadow(
@@ -73,7 +79,7 @@ class ServicesSectionWidget extends StatelessWidget {
         ],
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CachedNetworkImage(
             imageUrl: imageUrl,
@@ -115,6 +121,11 @@ class ServicesSectionWidget extends StatelessWidget {
           ),
         ],
       ),
+    ),
+ 
+        );
+      },
     );
-  }
+    
+     }
 }
