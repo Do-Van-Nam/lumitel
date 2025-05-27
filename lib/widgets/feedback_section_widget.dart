@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../constants/colors.dart';
 import '../constants/styles.dart';
 
@@ -16,7 +17,7 @@ class FeedbackSectionWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'Feedback',
+            'feedback_title'.tr,
             style: AppStyles.heading1,
             textAlign: TextAlign.center,
           ),
@@ -29,7 +30,7 @@ class FeedbackSectionWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: _buildFeedbackCard(
-                    'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/09ffc6f069d4f923596d387cc81d99d3313462cb?placeholderIfAbsent=true',
+                'assets/icons/feedback_avatar1.png',
                     'Stanislas',
                     "Iyi application iratangaje! Ubu ndashobora kuraba amasanamu, gukina udukino, ndetse no kuganira n'abagenzi umwanya umwe. Guhamagarana nta gatotsi birimwo, kandi amashusho ni meza cane. N'ihuriro ririmwo vyose: kwinezereza no kuyaga!",
                    
@@ -38,7 +39,7 @@ class FeedbackSectionWidget extends StatelessWidget {
                 SizedBox(width: 16), 
                 Expanded(
                   child: _buildFeedbackCard(
-                    'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/909d0d050fdee7c61c33d90b09ff275ad4cef6cf?placeholderIfAbsent=true',
+                'assets/icons/feedback_avatar2.png',
                     'Samuel',
                     "Nkundira cane bishasha biranga iyi application! Gucishamwo amasanamu no kuraba udukino birakora neza, kandi ndashobora guhindura nkinjira mu dukino canke nka ganira n'abagenzi ata ngorane kandi ntarambiwe. Birabereye cane kuguma ushimishwa kandi uhuzwa n'abandi!",
                   
@@ -47,7 +48,7 @@ class FeedbackSectionWidget extends StatelessWidget {
                 SizedBox(width: 16), 
                 Expanded(
                   child: _buildFeedbackCard(
-                    'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/ac84d23a92fc2c1759e1490ab5c03825c934c08e?placeholderIfAbsent=true',
+                'assets/icons/feedback_avatar3.png',
                     'Abdillahii',
                     "Niyo application nziza cane ku bijanye no kwinezereza no kuyaga! Ndashobora kuraba amasanamu, gukina udukino, guhamagara, no kuganira vyose ndabikorera hamwe. Uburyo bwo kuyikoresha bugenda neza, kandi ivyo bimenyetso bishasha biratuma itandukana n'izindi applications.",
                              
@@ -59,21 +60,21 @@ class FeedbackSectionWidget extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _buildFeedbackCard(
-                'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/09ffc6f069d4f923596d387cc81d99d3313462cb?placeholderIfAbsent=true',
+                'assets/icons/feedback_avatar1.png',
                 'Stanislas',
                 "Iyi application iratangaje! Ubu ndashobora kuraba amasanamu, gukina udukino, ndetse no kuganira n'abagenzi umwanya umwe. Guhamagarana nta gatotsi birimwo, kandi amashusho ni meza cane. N'ihuriro ririmwo vyose: kwinezereza no kuyaga!",
                
               ),
               SizedBox(height: 16),
               _buildFeedbackCard(
-                'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/909d0d050fdee7c61c33d90b09ff275ad4cef6cf?placeholderIfAbsent=true',
+                'assets/icons/feedback_avatar2.png',
                 'Samuel',
                 "Nkundira cane bishasha biranga iyi application! Gucishamwo amasanamu no kuraba udukino birakora neza, kandi ndashobora guhindura nkinjira mu dukino canke nka ganira n'abagenzi ata ngorane kandi ntarambiwe. Birabereye cane kuguma ushimishwa kandi uhuzwa n'abandi!",
               
               ),
               SizedBox(height: 16),
               _buildFeedbackCard(
-                'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/ac84d23a92fc2c1759e1490ab5c03825c934c08e?placeholderIfAbsent=true',
+                'assets/icons/feedback_avatar3.png',
                 'Abdillahii',
                 "Niyo application nziza cane ku bijanye no kwinezereza no kuyaga! Ndashobora kuraba amasanamu, gukina udukino, guhamagara, no kuganira vyose ndabikorera hamwe. Uburyo bwo kuyikoresha bugenda neza, kandi ivyo bimenyetso bishasha biratuma itandukana n'izindi applications.",
            
@@ -98,12 +99,6 @@ class FeedbackSectionWidget extends StatelessWidget {
           onEnter: (_) => setState(() => isHovered = true),
           onExit: (_) => setState(() => isHovered = false),
           child: Container(
-            // width:
-            //     MediaQueryData.fromWindow(
-            //           WidgetsBinding.instance.window,
-            //         ).size.width /
-            //         3 -
-            //     64,
             padding: EdgeInsets.all(24),
             decoration: BoxDecoration(
               color: Color(0xFFF7F9FC),
@@ -126,7 +121,7 @@ class FeedbackSectionWidget extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 27,
-                      backgroundImage: NetworkImage(avatarUrl),
+                      backgroundImage: AssetImage(avatarUrl),
                     ),
                     SizedBox(width: 12),
                     Column(
@@ -142,25 +137,13 @@ class FeedbackSectionWidget extends StatelessWidget {
                             5,
                             (index) => Padding(
                               padding: EdgeInsets.only(right: 2),
-                              child: CachedNetworkImage(
-                                imageUrl:
-                                    'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/e7814d9f22dae611494f6fd2fc854e777c7d1acc?placeholderIfAbsent=true',
+                              child: Image.asset(
+                                'assets/icons/star.png',
                                 width: 17,
                                 height: 17,
-                                placeholder:
-                                    (context, url) => SizedBox(
-                                      width: 17,
-                                      height: 17,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
-                                      ),
-                                    ),
-                                errorWidget:
-                                    (context, url, error) => Icon(
-                                      Icons.error,
-                                      size: 17,
-                                      color: Colors.red,
-                                    ),
+                                errorBuilder: (context, error, stackTrace) {
+              return Icon(Icons.error, size: 32);
+            },
                               ),
                             ),
                           ),

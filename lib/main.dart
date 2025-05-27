@@ -1,11 +1,11 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/screens/landing_screen.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:get/get.dart';
 
 import 'package:logger/logger.dart';
+
+import 'translations/app_translations.dart';
 
 final logger = Logger();
 
@@ -23,10 +23,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final String initialLocale =  'en';
+    return GetMaterialApp(
       title: 'Lumitel',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Poppins'),
+      locale: Locale(initialLocale),
+      fallbackLocale: Locale('en'),
+      translations: AppTranslations(),
       home: LandingScreen(),
     );
   }

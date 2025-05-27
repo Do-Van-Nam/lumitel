@@ -1,26 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:get/get.dart';
 
 import '../constants/colors.dart';
 import '../constants/styles.dart';
+RxString currentLanguage = 'en'.obs;
 
+void changeLanguage(String languageCode) {
+  currentLanguage.value = languageCode;
+  Get.updateLocale(Locale(languageCode));
+}
 class LanguageDropdown extends StatefulWidget {
   @override
   _LanguageDropdownState createState() => _LanguageDropdownState();
 }
 
 class _LanguageDropdownState extends State<LanguageDropdown> {
-  String selectedLanguage = 'English';
-
   final Map<String, String> languages = {
-    'English':
-        'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/e09fe0d3aa10d8d28ffa3f14e436abfb95723099?placeholderIfAbsent=true',
-    'French':
-        'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/e09fe0d3aa10d8d28ffa3f14e436abfb95723099?placeholderIfAbsent=true',
-  'Kirundi':
-        'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/e09fe0d3aa10d8d28ffa3f14e436abfb95723099?placeholderIfAbsent=true',
-  
+    'English': 'en',
+    'French': 'fr',
+    'Kirundi': 'ki',
   };
+
+  final Map<String, String> flagUrls = {
+    'English':
+        'https://flagcdn.com/w40/gb.png',
+    'French':
+        'https://flagcdn.com/w40/fr.png',
+    'Kirundi':
+        'https://flagcdn.com/w40/bi.png',
+  };
+
+  late String selectedLanguage;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedLanguage = languages.entries
+            .firstWhere((entry) => entry.value == currentLanguage.value,
+                orElse: () => MapEntry('English', 'en'))
+            .key;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,28 +64,34 @@ class _LanguageDropdownState extends State<LanguageDropdown> {
           icon: Icon(Icons.arrow_drop_down, color: Colors.white),
           dropdownColor: AppColors.primary,
           onChanged: (String? newValue) {
-            setState(() {
-              selectedLanguage = newValue!;
-            });
+            if (newValue != null) {
+              setState(() {
+                selectedLanguage = newValue;
+              });
+              final code = languages[newValue]!;
+              changeLanguage(code);
+            }
           },
-          items: languages.entries.map((entry) {
+          items: languages.keys.map((language) {
             return DropdownMenuItem<String>(
-              value: entry.key,
+              value: language,
               child: Row(
                 children: [
                   CachedNetworkImage(
-                    imageUrl: entry.value,
-                    width: 28,
-                    height: 28,
-                    placeholder: (context, url) =>
-                        CircularProgressIndicator(),
-                    errorWidget: (context, url, error) =>
-                        Icon(Icons.error, size: 28),
+                    imageUrl: flagUrls[language]!,
+                    width: 24,
+                    height: 24,
+                    placeholder: (context, url) => SizedBox(
+                      width: 24,
+                      height: 24,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
-                  SizedBox(width: 12),
+                  SizedBox(width: 8),
                   Text(
-                    entry.key,
-                    style: AppStyles.body1.copyWith(color: Colors.white),
+                    language,
+                    style: TextStyle(color: Colors.white),
                   ),
                 ],
               ),

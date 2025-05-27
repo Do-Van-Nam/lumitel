@@ -4,8 +4,9 @@ import '../constants/colors.dart';
 import '../constants/styles.dart';
 
 class HeroSectionWidget extends StatelessWidget {
-  const HeroSectionWidget({Key? key}) : super(key: key);
-
+  const HeroSectionWidget({Key? key, required this.slider1, required this.downloadKey}) : super(key: key);
+  final bool slider1;
+  final GlobalKey downloadKey;
   @override
   Widget build(BuildContext context) {
     bool isMobile = MediaQuery.of(context).size.width < 1030;
@@ -32,6 +33,7 @@ class HeroSectionWidget extends StatelessWidget {
                       style: AppStyles.heading1.copyWith(
                         fontSize: 36,
                         height: 1.5,
+                        color: AppColors.primary,
                       ),
                     ),
                   ],
@@ -43,6 +45,7 @@ class HeroSectionWidget extends StatelessWidget {
                 style: AppStyles.body1.copyWith(
                   fontSize: 18,
                   height: 1.4,
+                  color: slider1? AppColors.text : AppColors.neutral4,
                 ),
               ),
               SizedBox(height: 24),
@@ -56,17 +59,15 @@ class HeroSectionWidget extends StatelessWidget {
              
               ],
           ),
-          CachedNetworkImage(
-            // height: 100,
+          Image.asset(
+           slider1? 'assets/images/slider1_img.png':'assets/images/slider2_img.png',
             width: 450,
-            imageUrl:
-                'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/fbeb71c1ab60e307ec06fa11079b5637ac164853?placeholderIfAbsent=true',
             fit: BoxFit.contain,
-            placeholder:
-                (context, url) => Center(child: CircularProgressIndicator()),
-            errorWidget: (context, url, error) => Icon(Icons.error, size: 32),
+            errorBuilder: (context, error, stackTrace) {
+              return Icon(Icons.error, size: 32);
+            },
           ),
-        ],
+      ],
       ): Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -89,6 +90,7 @@ class HeroSectionWidget extends StatelessWidget {
                         style: AppStyles.heading1.copyWith(
                           fontSize: 36,
                           height: 1.5,
+                          color: AppColors.primary,
                         ),
                       ),
                     ],
@@ -100,6 +102,7 @@ class HeroSectionWidget extends StatelessWidget {
                   style: AppStyles.body1.copyWith(
                     fontSize: 18,
                     height: 1.4,
+                    color: slider1? AppColors.text : AppColors.neutral4,
                   ),
                 ),
                 SizedBox(height: 24),
@@ -116,16 +119,14 @@ class HeroSectionWidget extends StatelessWidget {
           ),
           Expanded(
             flex: 1,
-            child: CachedNetworkImage(
-              // height: 100,
-              // width: isMobile ? 300 : 400,
-              imageUrl:
-                  'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/fbeb71c1ab60e307ec06fa11079b5637ac164853?placeholderIfAbsent=true',
-              fit: BoxFit.contain,
-              placeholder:
-                  (context, url) => Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) => Icon(Icons.error, size: 32),
-            ),
+            child: Image.asset(
+           slider1? 'assets/images/slider1_img.png':'assets/images/slider2_img.png',
+
+            fit: BoxFit.contain,
+            errorBuilder: (context, error, stackTrace) {
+              return Icon(Icons.error, size: 32);
+            },
+          ),
           ),
         ],
       ),
@@ -133,23 +134,30 @@ class HeroSectionWidget extends StatelessWidget {
   }
 
   Widget _buildButton(String text, bool isPrimary) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 13),
-      decoration: BoxDecoration(
-        color: isPrimary ? AppColors.primary : AppColors.background,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Color(0x1A084268),
-            offset: Offset(0, 4),
-            blurRadius: 20,
-          ),
-        ],
+    return GestureDetector(
+      onTap: () => Scrollable.ensureVisible(
+        downloadKey.currentContext!,
+        duration: Duration(milliseconds: 600),
+        curve: Curves.easeInOut,
       ),
-      child: Text(
-        text,
-        style: AppStyles.button.copyWith(
-          color: isPrimary ? AppColors.background : AppColors.primary,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 13),
+        decoration: BoxDecoration(
+          color: isPrimary ? AppColors.primary : AppColors.background,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Color(0x1A084268),
+              offset: Offset(0, 4),
+              blurRadius: 20,
+            ),
+          ],
+        ),
+        child: Text(
+          text,
+          style: AppStyles.button.copyWith(
+            color: isPrimary ? AppColors.background : AppColors.primary,
+          ),
         ),
       ),
     );

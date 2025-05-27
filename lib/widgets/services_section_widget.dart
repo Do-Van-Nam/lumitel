@@ -22,38 +22,34 @@ class ServicesSectionWidget extends StatelessWidget {
           SizedBox(height: 48),
         isMobile? Column(
           children: [
-            CachedNetworkImage(
-                  // height: 100,
-                  width: 450,
-                  imageUrl:
-                      'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/fbeb71c1ab60e307ec06fa11079b5637ac164853?placeholderIfAbsent=true',
-                  fit: BoxFit.contain,
-                  placeholder:
-                      (context, url) =>
-                          Center(child: CircularProgressIndicator()),
-                  errorWidget:
-                      (context, url, error) => Icon(Icons.error, size: 32),
-                ),
+            Image.asset(
+          'assets/images/services_img.png',
+            width: 450,
+            fit: BoxFit.contain,
+            errorBuilder: (context, error, stackTrace) {
+              return Icon(Icons.error, size: 32);
+            },
+          ),
                 _buildServiceCard(
-                              'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/b6df7fd857a78902075a476e9354c5ce2946c8d0?placeholderIfAbsent=true',
+                              'assets/icons/chat_icon.png',
                               'Chat/Call free',
                               "Stay connected with unlimited free calls and chats through My Lumitel's user-friendly and reliable communication tools.",
                             ),
                           SizedBox(height: 16),
                             _buildServiceCard(
-                              'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/8343e02839343c3f02d1d0649030ec5fd8dc4fc5?placeholderIfAbsent=true',
+                              'assets/icons/video_icon.png',
                               'Movie/Video',
                               "Enjoy a vast library of movies and videos, available at your fingertips for endless entertainment.",
                             ),
                           SizedBox(height: 16),
                             _buildServiceCard(
-                              'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/5eb8957a9a4bfad98dfede60fa9cb79e39f3c1aa?placeholderIfAbsent=true',
+                              'assets/icons/music_icon.png',
                               'Music',
                               "Discover and listen to a diverse selection of music genres, with an easy-to-use interface for the ultimate listening experience.",
                             ),
                           SizedBox(height: 16),
                             _buildServiceCard(
-                              'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/723077b8006ed2d5327af002f052fc67a57ba99f?placeholderIfAbsent=true',
+                              'assets/icons/game_icon.png',
                               'Game',
                               "Play a wide variety of engaging games, designed to provide fun and excitement right on your device.",
                             ),
@@ -63,19 +59,17 @@ class ServicesSectionWidget extends StatelessWidget {
             children: [
               Expanded(
                 flex: 1,
-                child: CachedNetworkImage(
+                child: Image.asset(
                   // height: 100,
                   width: 450,
-                  imageUrl:
-                      'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/fbeb71c1ab60e307ec06fa11079b5637ac164853?placeholderIfAbsent=true',
+                  'assets/images/services_img.png',
                   fit: BoxFit.contain,
-                  placeholder:
-                      (context, url) =>
-                          Center(child: CircularProgressIndicator()),
-                  errorWidget:
-                      (context, url, error) => Icon(Icons.error, size: 32),
+                  errorBuilder: (context, error, stackTrace) {
+              return Icon(Icons.error, size: 32);
+            },
                 ),
               ),
+              SizedBox(width: 16),
               Expanded(
                 flex: 2,
                 child: Column(
@@ -85,7 +79,7 @@ class ServicesSectionWidget extends StatelessWidget {
                         children: [
                           Expanded(
                             child: _buildServiceCard(
-                              'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/b6df7fd857a78902075a476e9354c5ce2946c8d0?placeholderIfAbsent=true',
+                              'assets/icons/chat_icon.png',
                               'Chat/Call free',
                               "Stay connected with unlimited free calls and chats through My Lumitel's user-friendly and reliable communication tools.",
                             ),
@@ -93,7 +87,7 @@ class ServicesSectionWidget extends StatelessWidget {
                           SizedBox(width: 16),
                           Expanded(
                             child: _buildServiceCard(
-                              'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/8343e02839343c3f02d1d0649030ec5fd8dc4fc5?placeholderIfAbsent=true',
+                              'assets/icons/video_icon.png',
                               'Movie/Video',
                               "Enjoy a vast library of movies and videos, available at your fingertips for endless entertainment.",
                             ),
@@ -107,7 +101,7 @@ class ServicesSectionWidget extends StatelessWidget {
                         children: [
                           Expanded(
                             child: _buildServiceCard(
-                              'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/5eb8957a9a4bfad98dfede60fa9cb79e39f3c1aa?placeholderIfAbsent=true',
+                              'assets/icons/music_icon.png',
                               'Music',
                               "Discover and listen to a diverse selection of music genres, with an easy-to-use interface for the ultimate listening experience.",
                             ),
@@ -115,7 +109,7 @@ class ServicesSectionWidget extends StatelessWidget {
                           SizedBox(width: 16),
                           Expanded(
                             child: _buildServiceCard(
-                              'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/723077b8006ed2d5327af002f052fc67a57ba99f?placeholderIfAbsent=true',
+                              'assets/icons/game_icon.png',
                               'Game',
                               "Play a wide variety of engaging games, designed to provide fun and excitement right on your device.",
                             ),
@@ -160,28 +154,13 @@ class ServicesSectionWidget extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CachedNetworkImage(
-                  imageUrl: imageUrl,
+                Image.asset(
+                  imageUrl,
                   width: 48,
                   height: 48,
-                  placeholder:
-                      (context, url) => Container(
-                        width: 48,
-                        height: 48,
-                        alignment: Alignment.center,
-                        child: CircularProgressIndicator(),
-                      ),
-                  errorWidget:
-                      (context, url, error) => Container(
-                        width: 48,
-                        height: 48,
-                        alignment: Alignment.center,
-                        child: Icon(
-                          Icons.broken_image,
-                          color: Colors.grey,
-                          size: 48,
-                        ),
-                      ),
+                  errorBuilder: (context, error, stackTrace) {
+              return Icon(Icons.error, size: 32);
+            },
                 ),
                 SizedBox(width: 16),
                 Expanded(
