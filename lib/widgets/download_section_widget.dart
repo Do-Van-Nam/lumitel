@@ -5,12 +5,13 @@ import '../constants/styles.dart';
 
 class DownloadSectionWidget extends StatelessWidget {
   const DownloadSectionWidget({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+bool isMobile = MediaQuery.of(context).size.width < 1020;
     return Container(
       margin: EdgeInsets.only(top: 100),
-      padding: EdgeInsets.symmetric(horizontal: 80, vertical: 64),
+      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 64),
+      width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.background,
         borderRadius: BorderRadius.circular(20),
@@ -22,19 +23,65 @@ class DownloadSectionWidget extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: isMobile?
+      Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _buildDownloadSection(
             'Download App Lumitel',
             'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/3ae630b62b93317cbebf31230653091671c06ded?placeholderIfAbsent=true',
           ),
+          SizedBox(height: 24),
+          Container(
+            width: 174,
+            height: 4,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color.fromRGBO(0, 114, 188, 0), // rgba(0, 114, 188, 0)
+                  Color(0xFF0072BC), // #0072BC
+                  Color.fromRGBO(0, 114, 188, 0), // rgba(0, 114, 188, 0)
+                ],
+                stops: [0.0, 0.5288, 1.0],
+              ),
+            ),
+          ),
+          SizedBox(height: 24),
+          _buildDownloadSection(
+            'Download App LumiCare',
+            'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/a5f465ea015d707b7ba6dab311724dfc3f5b0383?placeholderIfAbsent=true',
+          ),
+        ],
+      )
+      : Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _buildDownloadSection(
+            'Download App Lumitel',
+            'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/3ae630b62b93317cbebf31230653091671c06ded?placeholderIfAbsent=true',
+          ),
+          
           Container(
             width: 4,
             height: 174,
-            color: AppColors.neutral4,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color.fromRGBO(0, 114, 188, 0), // rgba(0, 114, 188, 0)
+                  Color(0xFF0072BC), // #0072BC
+                  Color.fromRGBO(0, 114, 188, 0), // rgba(0, 114, 188, 0)
+                ],
+                stops: [0.0, 0.5288, 1.0],
+              ),
+            ),
           ),
+          
           _buildDownloadSection(
             'Download App LumiCare',
             'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/a5f465ea015d707b7ba6dab311724dfc3f5b0383?placeholderIfAbsent=true',

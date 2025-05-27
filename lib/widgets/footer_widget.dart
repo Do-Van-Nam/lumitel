@@ -12,12 +12,16 @@ class FooterWidget extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.symmetric(horizontal:isMobile? 16: 80, vertical: 32),
+          padding: EdgeInsets.symmetric(
+            horizontal: isMobile ? 16 : 80,
+            vertical: 32,
+          ),
           decoration: BoxDecoration(
             border: Border(top: BorderSide(color: AppColors.neutral4)),
             color: AppColors.text,
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildNewsletterSection(context),
               SizedBox(height: 24),
@@ -35,9 +39,11 @@ class FooterWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       // padding: EdgeInsets.symmetric(horizontal: 80, vertical: 24),
+         margin:MediaQuery.of(context).size.width > 600?  EdgeInsets.only(left: 24): EdgeInsets.zero,
+
       child: Wrap(
         spacing: 48,
-        runSpacing: 16, // khoảng cách dọc giữa các dòng nếu có xuống dòng
+        runSpacing: 16, 
         crossAxisAlignment:
             isMobile ? WrapCrossAlignment.center : WrapCrossAlignment.start,
         alignment: isMobile ? WrapAlignment.center : WrapAlignment.spaceBetween,
@@ -91,214 +97,229 @@ class FooterWidget extends StatelessWidget {
 
   Widget _buildFooterLinks(context) {
     bool isMobile = MediaQuery.of(context).size.width < 900;
-    return isMobile ? Column(
-crossAxisAlignment: CrossAxisAlignment.start,
-      
-children: [
-        SizedBox(
-          width: 400,
-          child: Row(
+    return isMobile
+        ? Container(
+         margin:MediaQuery.of(context).size.width > 600?  EdgeInsets.only(left: 24): EdgeInsets.zero,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+          
             children: [
-              CachedNetworkImage(
-                imageUrl:
-                    'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/8d8b49e5a7cf60f7a5df73476783eec6c863cf25?placeholderIfAbsent=true',
-                width: 100,
-                placeholder:
-                    (context, url) => SizedBox(
+              SizedBox(
+                width: 330,
+                child: Row(
+                  children: [
+                    CachedNetworkImage(
+                      imageUrl:
+                          'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/8d8b49e5a7cf60f7a5df73476783eec6c863cf25?placeholderIfAbsent=true',
                       width: 100,
-                      height: 100,
-                      child: Center(child: CircularProgressIndicator()),
+                      placeholder:
+                          (context, url) => SizedBox(
+                            width: 100,
+                            height: 100,
+                            child: Center(child: CircularProgressIndicator()),
+                          ),
+                      errorWidget:
+                          (context, url, error) => SizedBox(
+                            width: 100,
+                            height: 100,
+                            child: Center(
+                              child: Icon(Icons.broken_image, color: Colors.grey),
+                            ),
+                          ),
                     ),
-                errorWidget:
-                    (context, url, error) => SizedBox(
-                      width: 100,
-                      height: 100,
-                      child: Center(
-                        child: Icon(Icons.broken_image, color: Colors.grey),
+                    SizedBox(width: 12),
+                    Text(
+                      'MY LUMITEL\nFree entertainment',
+                      style: AppStyles.heading2.copyWith(
+                        color: AppColors.background,
                       ),
                     ),
+                  ],
+                ),
               ),
-              SizedBox(width: 12),
-              Text(
-                'MY LUMITEL\nFree entertainment',
-                style: AppStyles.heading2.copyWith(color: AppColors.background),
+              SizedBox(height: 16),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildFooterLink('Home'),
+                  SizedBox(height: 16),
+                  _buildFooterLink('Service'),
+                  SizedBox(height: 16),
+                  _buildFooterLink('Download App'),
+                  SizedBox(height: 16),
+                  _buildFooterLink('Contact'),
+                ],
               ),
-            ],
-          ),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildFooterLink('Home'),
-            SizedBox(height: 16),
-            _buildFooterLink('Service'),
-            SizedBox(height: 16),
-            _buildFooterLink('Download App'),
-            SizedBox(height: 16),
-            _buildFooterLink('Contact'),
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Get the app',
-              style: AppStyles.body1.copyWith(color: AppColors.background),
-            ),
-            SizedBox(height: 16),
-            Container(
-              width: 160,
-              height: 48,
-              decoration: BoxDecoration(
-                color: AppColors.primary,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.25),
-                    offset: Offset(0, 4),
-                    blurRadius: 4,
+              SizedBox(height: 16),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Get the app',
+                    style: AppStyles.body1.copyWith(color: AppColors.background),
+                  ),
+                  SizedBox(height: 16),
+                  Container(
+                    width: 160,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      color: AppColors.primary,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.25),
+                          offset: Offset(0, 4),
+                          blurRadius: 4,
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/c6731e856096110c03ee833444b4b1fb50b82b12?placeholderIfAbsent=true',
+                        width: 138,
+                        placeholder:
+                            (context, url) => CircularProgressIndicator(),
+                        errorWidget:
+                            (context, url, error) =>
+                                Icon(Icons.broken_image, color: Colors.grey),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  Container(
+                    width: 160,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      color: AppColors.background,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/4dd215d752f520dd6ff9aa7bf7c48551532f7c09?placeholderIfAbsent=true',
+                        width: 120,
+                        placeholder:
+                            (context, url) => CircularProgressIndicator(),
+                        errorWidget:
+                            (context, url, error) =>
+                                Icon(Icons.broken_image, color: Colors.grey),
+                      ),
+                    ),
                   ),
                 ],
               ),
-              child: Center(
-                child: CachedNetworkImage(
-                  imageUrl:
-                      'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/c6731e856096110c03ee833444b4b1fb50b82b12?placeholderIfAbsent=true',
-                  width: 138,
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget:
-                      (context, url, error) =>
-                          Icon(Icons.broken_image, color: Colors.grey),
-                ),
-              ),
-            ),
-            SizedBox(height: 16),
-            Container(
-              width: 160,
-              height: 48,
-              decoration: BoxDecoration(
-                color: AppColors.background,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: CachedNetworkImage(
-                  imageUrl:
-                      'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/4dd215d752f520dd6ff9aa7bf7c48551532f7c09?placeholderIfAbsent=true',
-                  width: 120,
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget:
-                      (context, url, error) =>
-                          Icon(Icons.broken_image, color: Colors.grey),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
-    ) :Row(
-mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        SizedBox(
-          width: 400,
-          child: Row(
-            children: [
-              CachedNetworkImage(
-                imageUrl:
-                    'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/8d8b49e5a7cf60f7a5df73476783eec6c863cf25?placeholderIfAbsent=true',
-                width: 100,
-                placeholder:
-                    (context, url) => SizedBox(
-                      width: 100,
-                      height: 100,
-                      child: Center(child: CircularProgressIndicator()),
-                    ),
-                errorWidget:
-                    (context, url, error) => SizedBox(
-                      width: 100,
-                      height: 100,
-                      child: Center(
-                        child: Icon(Icons.broken_image, color: Colors.grey),
-                      ),
-                    ),
-              ),
-              SizedBox(width: 12),
-              Text(
-                'MY LUMITEL\nFree entertainment',
-                style: AppStyles.heading2.copyWith(color: AppColors.background),
-              ),
             ],
           ),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        )
+        : Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildFooterLink('Home'),
-            SizedBox(height: 16),
-            _buildFooterLink('Service'),
-            SizedBox(height: 16),
-            _buildFooterLink('Download App'),
-            SizedBox(height: 16),
-            _buildFooterLink('Contact'),
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Get the app',
-              style: AppStyles.body1.copyWith(color: AppColors.background),
-            ),
-            SizedBox(height: 16),
-            Container(
-              width: 160,
-              height: 48,
-              decoration: BoxDecoration(
-                color: AppColors.primary,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.25),
-                    offset: Offset(0, 4),
-                    blurRadius: 4,
+            SizedBox(
+              width: 330,
+              child: Row(
+                children: [
+                  CachedNetworkImage(
+                    imageUrl:
+                        'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/8d8b49e5a7cf60f7a5df73476783eec6c863cf25?placeholderIfAbsent=true',
+                    width: 100,
+                    placeholder:
+                        (context, url) => SizedBox(
+                          width: 100,
+                          height: 100,
+                          child: Center(child: CircularProgressIndicator()),
+                        ),
+                    errorWidget:
+                        (context, url, error) => SizedBox(
+                          width: 100,
+                          height: 100,
+                          child: Center(
+                            child: Icon(Icons.broken_image, color: Colors.grey),
+                          ),
+                        ),
+                  ),
+                  SizedBox(width: 12),
+                  Text(
+                    'MY LUMITEL\nFree entertainment',
+                    style: AppStyles.heading2.copyWith(
+                      color: AppColors.background,
+                    ),
                   ),
                 ],
               ),
-              child: Center(
-                child: CachedNetworkImage(
-                  imageUrl:
-                      'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/c6731e856096110c03ee833444b4b1fb50b82b12?placeholderIfAbsent=true',
-                  width: 138,
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget:
-                      (context, url, error) =>
-                          Icon(Icons.broken_image, color: Colors.grey),
-                ),
-              ),
             ),
-            SizedBox(height: 16),
-            Container(
-              width: 160,
-              height: 48,
-              decoration: BoxDecoration(
-                color: AppColors.background,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: CachedNetworkImage(
-                  imageUrl:
-                      'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/4dd215d752f520dd6ff9aa7bf7c48551532f7c09?placeholderIfAbsent=true',
-                  width: 120,
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget:
-                      (context, url, error) =>
-                          Icon(Icons.broken_image, color: Colors.grey),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildFooterLink('Home'),
+                SizedBox(height: 16),
+                _buildFooterLink('Service'),
+                SizedBox(height: 16),
+                _buildFooterLink('Download App'),
+                SizedBox(height: 16),
+                _buildFooterLink('Contact'),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Get the app',
+                  style: AppStyles.body1.copyWith(color: AppColors.background),
                 ),
-              ),
+                SizedBox(height: 16),
+                Container(
+                  width: 160,
+                  height: 48,
+                  decoration: BoxDecoration(
+                    color: AppColors.primary,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.25),
+                        offset: Offset(0, 4),
+                        blurRadius: 4,
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/c6731e856096110c03ee833444b4b1fb50b82b12?placeholderIfAbsent=true',
+                      width: 138,
+                      placeholder:
+                          (context, url) => CircularProgressIndicator(),
+                      errorWidget:
+                          (context, url, error) =>
+                              Icon(Icons.broken_image, color: Colors.grey),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16),
+                Container(
+                  width: 160,
+                  height: 48,
+                  decoration: BoxDecoration(
+                    color: AppColors.background,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Center(
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/4dd215d752f520dd6ff9aa7bf7c48551532f7c09?placeholderIfAbsent=true',
+                      width: 120,
+                      placeholder:
+                          (context, url) => CircularProgressIndicator(),
+                      errorWidget:
+                          (context, url, error) =>
+                              Icon(Icons.broken_image, color: Colors.grey),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
-        ),
-      ],
-    );
+        );
   }
 
   Widget _buildFooterLink(String text) {
@@ -315,8 +336,6 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
     final horizontalPadding = screenWidth < 600 ? 16.0 : 80.0;
 
     // Responsive alignment: nhỏ hơn thì căn giữa
-    final alignment =
-        screenWidth < 600 ? WrapAlignment.center : WrapAlignment.spaceBetween;
 
     return Container(
       width: double.infinity,
@@ -327,7 +346,7 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
       color: AppColors.yellow,
       child: Wrap(
         spacing: 48,
-        runSpacing: 16, // khoảng cách dọc giữa các dòng nếu có xuống dòng
+        runSpacing: 16, 
         crossAxisAlignment:
             isMobile ? WrapCrossAlignment.center : WrapCrossAlignment.start,
         alignment: isMobile ? WrapAlignment.center : WrapAlignment.spaceBetween,
@@ -338,7 +357,7 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
             style: AppStyles.body1,
             textAlign: TextAlign.center,
           ),
-          // Đổi Row thành Wrap để tránh lỗi tràn dòng khi màn hình hẹp
+          
           Wrap(
             spacing: 32,
             alignment: WrapAlignment.center,

@@ -8,8 +8,9 @@ class ServicesSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isMobile = MediaQuery.of(context).size.width < 800;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 80),
+      padding: EdgeInsets.symmetric(horizontal:isMobile?16: 80),
       margin: EdgeInsets.only(top: 74),
       child: Column(
         children: [
@@ -19,33 +20,111 @@ class ServicesSectionWidget extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 48),
-          Wrap(
-            spacing: 32,
-            runSpacing: 32,
+        isMobile? Column(
+          children: [
+            CachedNetworkImage(
+                  // height: 100,
+                  width: 450,
+                  imageUrl:
+                      'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/fbeb71c1ab60e307ec06fa11079b5637ac164853?placeholderIfAbsent=true',
+                  fit: BoxFit.contain,
+                  placeholder:
+                      (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                  errorWidget:
+                      (context, url, error) => Icon(Icons.error, size: 32),
+                ),
+                _buildServiceCard(
+                              'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/b6df7fd857a78902075a476e9354c5ce2946c8d0?placeholderIfAbsent=true',
+                              'Chat/Call free',
+                              "Stay connected with unlimited free calls and chats through My Lumitel's user-friendly and reliable communication tools.",
+                            ),
+                          SizedBox(height: 16),
+                            _buildServiceCard(
+                              'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/8343e02839343c3f02d1d0649030ec5fd8dc4fc5?placeholderIfAbsent=true',
+                              'Movie/Video',
+                              "Enjoy a vast library of movies and videos, available at your fingertips for endless entertainment.",
+                            ),
+                          SizedBox(height: 16),
+                            _buildServiceCard(
+                              'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/5eb8957a9a4bfad98dfede60fa9cb79e39f3c1aa?placeholderIfAbsent=true',
+                              'Music',
+                              "Discover and listen to a diverse selection of music genres, with an easy-to-use interface for the ultimate listening experience.",
+                            ),
+                          SizedBox(height: 16),
+                            _buildServiceCard(
+                              'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/723077b8006ed2d5327af002f052fc67a57ba99f?placeholderIfAbsent=true',
+                              'Game',
+                              "Play a wide variety of engaging games, designed to provide fun and excitement right on your device.",
+                            ),
+          ],
+        ):  Row(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildServiceCard(
-                'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/b6df7fd857a78902075a476e9354c5ce2946c8d0?placeholderIfAbsent=true',
-                'Chat/Call free',
-                "Stay connected with unlimited free calls and chats through My Lumitel's user-friendly and reliable communication tools.",
-                true,
+              Expanded(
+                flex: 1,
+                child: CachedNetworkImage(
+                  // height: 100,
+                  width: 450,
+                  imageUrl:
+                      'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/fbeb71c1ab60e307ec06fa11079b5637ac164853?placeholderIfAbsent=true',
+                  fit: BoxFit.contain,
+                  placeholder:
+                      (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                  errorWidget:
+                      (context, url, error) => Icon(Icons.error, size: 32),
+                ),
               ),
-              _buildServiceCard(
-                'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/8343e02839343c3f02d1d0649030ec5fd8dc4fc5?placeholderIfAbsent=true',
-                'Movie/Video',
-                "Enjoy a vast library of movies and videos, available at your fingertips for endless entertainment.",
-                false,
-              ),
-              _buildServiceCard(
-                'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/5eb8957a9a4bfad98dfede60fa9cb79e39f3c1aa?placeholderIfAbsent=true',
-                'Music',
-                "Discover and listen to a diverse selection of music genres, with an easy-to-use interface for the ultimate listening experience.",
-                false,
-              ),
-              _buildServiceCard(
-                'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/723077b8006ed2d5327af002f052fc67a57ba99f?placeholderIfAbsent=true',
-                'Game',
-                "Play a wide variety of engaging games, designed to provide fun and excitement right on your device.",
-                false,
+              Expanded(
+                flex: 2,
+                child: Column(
+                  children: [
+                    IntrinsicHeight(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: _buildServiceCard(
+                              'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/b6df7fd857a78902075a476e9354c5ce2946c8d0?placeholderIfAbsent=true',
+                              'Chat/Call free',
+                              "Stay connected with unlimited free calls and chats through My Lumitel's user-friendly and reliable communication tools.",
+                            ),
+                          ),
+                          SizedBox(width: 16),
+                          Expanded(
+                            child: _buildServiceCard(
+                              'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/8343e02839343c3f02d1d0649030ec5fd8dc4fc5?placeholderIfAbsent=true',
+                              'Movie/Video',
+                              "Enjoy a vast library of movies and videos, available at your fingertips for endless entertainment.",
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    IntrinsicHeight(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: _buildServiceCard(
+                              'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/5eb8957a9a4bfad98dfede60fa9cb79e39f3c1aa?placeholderIfAbsent=true',
+                              'Music',
+                              "Discover and listen to a diverse selection of music genres, with an easy-to-use interface for the ultimate listening experience.",
+                            ),
+                          ),
+                          SizedBox(width: 16),
+                          Expanded(
+                            child: _buildServiceCard(
+                              'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/723077b8006ed2d5327af002f052fc67a57ba99f?placeholderIfAbsent=true',
+                              'Game',
+                              "Play a wide variety of engaging games, designed to provide fun and excitement right on your device.",
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -54,7 +133,7 @@ class ServicesSectionWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildServiceCard(String imageUrl, String title, String description, bool isPrimary) {
+  Widget _buildServiceCard(String imageUrl, String title, String description) {
     bool isHovered = false;
     return StatefulBuilder(
       builder: (context, setState) {
@@ -62,70 +141,64 @@ class ServicesSectionWidget extends StatelessWidget {
           onEnter: (_) => setState(() => isHovered = true),
           onExit: (_) => setState(() => isHovered = false),
           child: Container(
-      width: 314,
-      padding: EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: Color(0xFFF7F9FC),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: isHovered ? AppColors.primary : AppColors.neutral4,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Color(0x1A0F1D4B),
-            offset: Offset(5.898, 7.864),
-            blurRadius: 39.318,
-          ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CachedNetworkImage(
-            imageUrl: imageUrl,
-            width: 48,
-            height: 48,
-            placeholder: (context, url) => Container(
-              width: 48,
-              height: 48,
-              alignment: Alignment.center,
-              child: CircularProgressIndicator(),
-            ),
-            errorWidget: (context, url, error) => Container(
-              width: 48,
-              height: 48,
-              alignment: Alignment.center,
-              child: Icon(
-                Icons.broken_image,
-                color: Colors.grey,
-                size: 48,
+            // width: 314,
+            padding: EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: Color(0xFFF7F9FC),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: isHovered ? AppColors.primary : AppColors.neutral4,
               ),
-            ),
-          ),
-          SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: AppStyles.heading2,
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0x1A0F1D4B),
+                  offset: Offset(5.898, 7.864),
+                  blurRadius: 39.318,
                 ),
-                SizedBox(height: 12),
-                Text(
-                  description,
-                  style: AppStyles.body1,
+              ],
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CachedNetworkImage(
+                  imageUrl: imageUrl,
+                  width: 48,
+                  height: 48,
+                  placeholder:
+                      (context, url) => Container(
+                        width: 48,
+                        height: 48,
+                        alignment: Alignment.center,
+                        child: CircularProgressIndicator(),
+                      ),
+                  errorWidget:
+                      (context, url, error) => Container(
+                        width: 48,
+                        height: 48,
+                        alignment: Alignment.center,
+                        child: Icon(
+                          Icons.broken_image,
+                          color: Colors.grey,
+                          size: 48,
+                        ),
+                      ),
+                ),
+                SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(title, style: AppStyles.heading2),
+                      SizedBox(height: 12),
+                      Text(description, style: AppStyles.body1),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-        ],
-      ),
-    ),
- 
         );
       },
     );
-    
-     }
+  }
 }

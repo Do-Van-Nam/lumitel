@@ -13,6 +13,7 @@ class LandingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isMobile = MediaQuery.of(context).size.width < 1030;
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SingleChildScrollView(
@@ -20,61 +21,91 @@ class LandingScreen extends StatelessWidget {
           children: [
             Stack(
               children: [
-                CachedNetworkImage(
-                  imageUrl:
-                      'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/8840f900952c308c7b2d1f16425c2cbea3f5db20?placeholderIfAbsent=true',
-                  width: double.infinity,
-                  height: 595,
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) => Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  errorWidget: (context, url, error) => Center(
-                    child: Icon(
-                      Icons.error,
-                      color: Colors.red,
-                      size: 50,
-                    ),
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 595,
-                  child: ColorFiltered(
-                    colorFilter: ColorFilter.mode(
-                      Colors.white.withOpacity(0.5),
-                      BlendMode.screen,
-                    ),
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/e65016b6d64c8aab702aad7857817aee2b183322?placeholderIfAbsent=true',
-                      width: double.infinity,
-                      height: 595,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) => Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                      errorWidget: (context, url, error) => Center(
-                        child: Icon(
-                          Icons.error,
-                          color: Colors.red,
-                          size: 50,
+                Positioned.fill(
+                  child: CachedNetworkImage(
+                    imageUrl:
+                        'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/e65016b6d64c8aab702aad7857817aee2b183322?placeholderIfAbsent=true',
+                    fit: BoxFit.cover,
+                    placeholder:
+                        (context, url) =>
+                            Center(child: CircularProgressIndicator()),
+                    errorWidget:
+                        (context, url, error) => Center(
+                          child: Icon(Icons.error, color: Colors.red, size: 50),
                         ),
+                  ),
+                ),
+                Column(children: [HeaderWidget(), HeroSectionWidget()]),
+                // Left and Right Buttons
+            if(!isMobile)    Positioned(
+                  left: 10,
+                  top: MediaQuery.of(context).size.height / 2,
+                  child: GestureDetector(
+                    onTap: () {
+                      // Add your left button action here
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
                       ),
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(Icons.arrow_back, color: Colors.black),
                     ),
                   ),
                 ),
-                Column(
-                  children: [
-                    HeaderWidget(),
-                    HeroSectionWidget(),
-                  ],
+            if(!isMobile)     Positioned(
+                  right: 10,
+                  top: MediaQuery.of(context).size.height / 2,
+                  child: GestureDetector(
+                    onTap: () {
+                      // Add your left button action here
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(Icons.arrow_forward, color: Colors.black),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 20,
+                  left: MediaQuery.of(context).size.width / 2 - 25,
+                  child: GestureDetector(
+                    onTap: () {
+                      // Add your bottom button action here
+                    },
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 32,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: AppColors.primary,
+                            borderRadius: BorderRadius.circular(1000),
+                          ),
+                        ),
+                        SizedBox(width: 8),
+                        Container(
+                          width: 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: AppColors.background,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
             // Download Section
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 80),
+              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width < 800 ? 16 : 80),
               child: DownloadSectionWidget(),
             ),
             ServicesSectionWidget(),

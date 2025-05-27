@@ -8,8 +8,11 @@ class FeedbackSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isMobile = MediaQuery.of(context).size.width < 800;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 32),
+      padding: EdgeInsets.symmetric(horizontal: isMobile ? 16 : 80),
+
+      margin: EdgeInsets.only(bottom: 32),
       child: Column(
         children: [
           Text(
@@ -18,9 +21,42 @@ class FeedbackSectionWidget extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 48),
-          Wrap(
-            spacing: 32,
-            runSpacing: 32,
+         !isMobile? 
+         
+         IntrinsicHeight(
+           child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: _buildFeedbackCard(
+                    'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/09ffc6f069d4f923596d387cc81d99d3313462cb?placeholderIfAbsent=true',
+                    'Stanislas',
+                    "Iyi application iratangaje! Ubu ndashobora kuraba amasanamu, gukina udukino, ndetse no kuganira n'abagenzi umwanya umwe. Guhamagarana nta gatotsi birimwo, kandi amashusho ni meza cane. N'ihuriro ririmwo vyose: kwinezereza no kuyaga!",
+                   
+                  ),
+                ),
+                SizedBox(width: 16), 
+                Expanded(
+                  child: _buildFeedbackCard(
+                    'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/909d0d050fdee7c61c33d90b09ff275ad4cef6cf?placeholderIfAbsent=true',
+                    'Samuel',
+                    "Nkundira cane bishasha biranga iyi application! Gucishamwo amasanamu no kuraba udukino birakora neza, kandi ndashobora guhindura nkinjira mu dukino canke nka ganira n'abagenzi ata ngorane kandi ntarambiwe. Birabereye cane kuguma ushimishwa kandi uhuzwa n'abandi!",
+                  
+                  ),
+                ),
+                SizedBox(width: 16), 
+                Expanded(
+                  child: _buildFeedbackCard(
+                    'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/ac84d23a92fc2c1759e1490ab5c03825c934c08e?placeholderIfAbsent=true',
+                    'Abdillahii',
+                    "Niyo application nziza cane ku bijanye no kwinezereza no kuyaga! Ndashobora kuraba amasanamu, gukina udukino, guhamagara, no kuganira vyose ndabikorera hamwe. Uburyo bwo kuyikoresha bugenda neza, kandi ivyo bimenyetso bishasha biratuma itandukana n'izindi applications.",
+                             
+                  ),
+                ),
+              ],
+            ),
+         ): Column(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _buildFeedbackCard(
                 'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/09ffc6f069d4f923596d387cc81d99d3313462cb?placeholderIfAbsent=true',
@@ -28,12 +64,14 @@ class FeedbackSectionWidget extends StatelessWidget {
                 "Iyi application iratangaje! Ubu ndashobora kuraba amasanamu, gukina udukino, ndetse no kuganira n'abagenzi umwanya umwe. Guhamagarana nta gatotsi birimwo, kandi amashusho ni meza cane. N'ihuriro ririmwo vyose: kwinezereza no kuyaga!",
                
               ),
+              SizedBox(height: 16),
               _buildFeedbackCard(
                 'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/909d0d050fdee7c61c33d90b09ff275ad4cef6cf?placeholderIfAbsent=true',
                 'Samuel',
                 "Nkundira cane bishasha biranga iyi application! Gucishamwo amasanamu no kuraba udukino birakora neza, kandi ndashobora guhindura nkinjira mu dukino canke nka ganira n'abagenzi ata ngorane kandi ntarambiwe. Birabereye cane kuguma ushimishwa kandi uhuzwa n'abandi!",
               
               ),
+              SizedBox(height: 16),
               _buildFeedbackCard(
                 'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/ac84d23a92fc2c1759e1490ab5c03825c934c08e?placeholderIfAbsent=true',
                 'Abdillahii',
@@ -60,12 +98,12 @@ class FeedbackSectionWidget extends StatelessWidget {
           onEnter: (_) => setState(() => isHovered = true),
           onExit: (_) => setState(() => isHovered = false),
           child: Container(
-            width:
-                MediaQueryData.fromWindow(
-                      WidgetsBinding.instance.window,
-                    ).size.width /
-                    3 -
-                64,
+            // width:
+            //     MediaQueryData.fromWindow(
+            //           WidgetsBinding.instance.window,
+            //         ).size.width /
+            //         3 -
+            //     64,
             padding: EdgeInsets.all(24),
             decoration: BoxDecoration(
               color: Color(0xFFF7F9FC),

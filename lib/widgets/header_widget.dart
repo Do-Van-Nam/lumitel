@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../constants/colors.dart';
 import '../constants/styles.dart';
+import 'language_dropdown_button.dart';
 
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({Key? key}) : super(key: key);
@@ -43,7 +44,8 @@ class HeaderWidget extends StatelessWidget {
             ],
           ),
 
-          _buildLanguageButton(),
+          // _buildLanguageButton(),
+          LanguageDropdown(),
         ],
       ),
     );

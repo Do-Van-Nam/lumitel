@@ -8,11 +8,11 @@ class HeroSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isMobile = MediaQuery.of(context).size.width < 600;
+    bool isMobile = MediaQuery.of(context).size.width < 1030;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 32),
+      padding: EdgeInsets.symmetric(horizontal:isMobile?16: 80),
       width: double.infinity,
-      margin: EdgeInsets.only(top: 42),
+      // margin: EdgeInsets.only(top: 12),
       child: isMobile? Column(
         children: [
           Column(
@@ -58,7 +58,7 @@ class HeroSectionWidget extends StatelessWidget {
           ),
           CachedNetworkImage(
             // height: 100,
-            width: isMobile ? 300 : 400,
+            width: 450,
             imageUrl:
                 'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/fbeb71c1ab60e307ec06fa11079b5637ac164853?placeholderIfAbsent=true',
             fit: BoxFit.contain,
@@ -70,8 +70,8 @@ class HeroSectionWidget extends StatelessWidget {
       ): Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(
-            width: 400,
+          Expanded(
+            flex: 1,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -114,15 +114,18 @@ class HeroSectionWidget extends StatelessWidget {
                 ],
             ),
           ),
-          CachedNetworkImage(
-            // height: 100,
-            width: isMobile ? 300 : 400,
-            imageUrl:
-                'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/fbeb71c1ab60e307ec06fa11079b5637ac164853?placeholderIfAbsent=true',
-            fit: BoxFit.contain,
-            placeholder:
-                (context, url) => Center(child: CircularProgressIndicator()),
-            errorWidget: (context, url, error) => Icon(Icons.error, size: 32),
+          Expanded(
+            flex: 1,
+            child: CachedNetworkImage(
+              // height: 100,
+              // width: isMobile ? 300 : 400,
+              imageUrl:
+                  'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/fbeb71c1ab60e307ec06fa11079b5637ac164853?placeholderIfAbsent=true',
+              fit: BoxFit.contain,
+              placeholder:
+                  (context, url) => Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => Icon(Icons.error, size: 32),
+            ),
           ),
         ],
       ),
