@@ -40,4 +40,6 @@ final Map<String, String> kiRu = {
 
   'lumicare_title':'Uburyo bworoshye kandi bwihuta',
   'lumicare_description':"LumiCare ni porogaramu ya telefone ya Lumitel, igenewe guha abakiriya uburyo bworoshe, bwihuta kandi bwizewe bwo gucunga serivisi zose z’itumanaho. Ukoresheje LumiCare, umukiriya wa Lumitel wese ashobora kuraba no gucunga amafaranga ari kuri konti, kugura impapuro za internet, kuraba indangamuntu ya SIM, no kuronka izindi serivisi zose atarinze gukoresha USSD canke kuja ku biro vya Lumitel.",
+'subscribe_success': 'Kwiyandikisha vyagenze neza!',
+'invalid_format': 'Ifishi siyo. Andika imeyili canke inomero ya telefone vyemewe.'
 };

@@ -40,5 +40,6 @@ final Map<String, String> frFR = {
 
   'lumicare_title':'La façon simple et rapide',
   'lumicare_description':"LumiCare est l'application mobile officielle de Lumitel, conçue pour offrir aux abonnés une gestion simple, rapide et sécurisée de tous leurs services télécom. Avec LumiCare, chaque client Lumitel peut consulter et gérer ses crédits, acheter des forfaits internet, vérifier son identifiant SIM et accéder à l'ensemble des services sans avoir besoin d'utiliser l'USSD ou de se rendre en agence.",
-
+ 'subscribe_success': 'Abonnement réussi!',
+  'invalid_format': 'Format invalide. Veuillez entrer un email ou un numéro de téléphone valide.'
 };

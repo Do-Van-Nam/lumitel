@@ -40,4 +40,7 @@ final Map<String, String> enUS = {
 
   'lumicare_title':'The easy and quick way',
   'lumicare_description':"LumiCare is Lumitel's official mobile application, designed to offer subscribers simple, fast, and secure management of all their telecom services. With LumiCare, each Lumitel customer can view and manage their credits, purchase internet packages, check their SIM ID, and access a full range of services without needing to use USSD or visit the agency.",
+
+  'subscribe_success': 'Subscription successful!',
+  'invalid_format': 'Invalid format. Please enter a valid email or phone number.'
 };

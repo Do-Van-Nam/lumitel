@@ -34,6 +34,7 @@ class DownloadSectionWidget extends StatelessWidget {
                   _buildDownloadSection(
                     'hero_download_lumitel'.tr,
                     'assets/images/qr_lumitel.png',
+                    'lumitel',
                   ),
                   SizedBox(height: 24),
                   Container(
@@ -66,6 +67,7 @@ class DownloadSectionWidget extends StatelessWidget {
                   _buildDownloadSection(
                     'hero_download_lumicare'.tr,
                     'assets/images/qr_lumicare.png',
+                    'lumicare',
                   ),
                 ],
               )
@@ -76,6 +78,7 @@ class DownloadSectionWidget extends StatelessWidget {
                   _buildDownloadSection(
                     'hero_download_lumitel'.tr,
                     'assets/images/qr_lumitel.png',
+                    'lumitel',
                   ),
 
                   Container(
@@ -108,26 +111,34 @@ class DownloadSectionWidget extends StatelessWidget {
                   _buildDownloadSection(
                     'hero_download_lumicare'.tr,
                     'assets/images/qr_lumicare.png',
+                    'lumicare',
                   ),
                 ],
               ),
     );
   }
 
-  Widget _buildDownloadSection(String title, String qrImageUrl) {
+  Widget _buildDownloadSection(String title, String qrImageUrl, String appName) {
     return Container(
       width: 390,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(title, style: AppStyles.heading2),
           SizedBox(height: 32),
-          Row(
+          Wrap(
+            spacing: 40,
+            runSpacing: 40,
+            alignment: WrapAlignment.spaceAround,
+         runAlignment: WrapAlignment.center,
+
+         crossAxisAlignment: WrapCrossAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 width: 180,
                 height: 180,
-                padding: EdgeInsets.all(15),
+                padding: EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   color: AppColors.background,
                   borderRadius: BorderRadius.circular(18),
@@ -138,15 +149,15 @@ class DownloadSectionWidget extends StatelessWidget {
                 ),
                 child: Image.asset(
                   qrImageUrl,
-                  width: 150,
-                  height: 150,
+                  width: 170,
+                  height: 170,
                   fit: BoxFit.contain,
                   errorBuilder: (context, error, stackTrace) {
                     return Icon(Icons.error, color: Colors.red);
                   },
                 ),
               ),
-              SizedBox(width: 40),
+              // SizedBox(width: 40),
               Column(
                 children: [
                   buildDownloadOption(
@@ -154,7 +165,9 @@ class DownloadSectionWidget extends StatelessWidget {
                     'assets/icons/apk_icon.png',
                     'free_data_usage'.tr,
                     'download_apk'.tr,
-                    ''
+                    appName == 'lumitel'
+                        ? 'https://selfcare-my.lumitel.bi/lumitel-api-v2/without-bearer/download/apk?app=MyLumitel'
+                        : 'https://selfcare-my.lumitel.bi/lumitel-api-v2/without-bearer/download/apk?app=LumiCare',
                   ),
                   SizedBox(height: 12),
                   buildDownloadOption(
@@ -162,14 +175,18 @@ class DownloadSectionWidget extends StatelessWidget {
                     'assets/icons/google_play.png',
                     'get_it_on'.tr,
                     'Google Play',
-                    'https://play.google.com/store/apps/details?id=com.lumitel.superapp'
+                   appName == 'lumitel'
+                       ? 'https://play.google.com/store/apps/details?id=com.lumitel.superapp'
+                       : 'https://play.google.com/store/apps/details?id=com.ringme.lumicare',
                   ),SizedBox(height: 12),
                   buildDownloadOption(
                     'white',
                     'assets/icons/appstore_icon.png',
                     'download_on_the'.tr,
                     'App Store',
-                    'https://apps.apple.com/vn/app/my-lumitel/id1586124527'
+                    appName == 'lumitel'
+                        ? 'https://apps.apple.com/vn/app/my-lumitel/id1586124527'
+                        : 'https://apps.apple.com/vn/app/my-lumitel/id1586124527'
                   ), ],
               ),
             ],

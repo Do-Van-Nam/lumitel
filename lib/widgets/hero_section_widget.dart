@@ -50,10 +50,11 @@ class HeroSectionWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 24),
-              Row(
+              Wrap(
+                spacing: 16,
+                runSpacing: 16,
                 children: [
                   _buildButton('hero_download_lumitel'.tr, true),
-                  SizedBox(width: 24),
                   _buildButton('hero_download_lumicare'.tr, false),
                 ],
               ),

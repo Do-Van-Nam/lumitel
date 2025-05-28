@@ -38,7 +38,7 @@ dependencies:
   provider: ^6.1.4
   firebase_core: ^2.25.2
   firebase_crashlytics: ^3.4.9
-
+  webview_flutter: ^4.2.2
   # UI framework
   flutter_local_notifications: 13.0.0
 

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../constants/colors.dart';
 import '../constants/styles.dart';
+import 'dart:html' as html; 
 
 class FooterWidget extends StatelessWidget {
 final GlobalKey serviceKey;
@@ -47,50 +48,64 @@ final GlobalKey serviceKey;
     );
   }
 
-  Widget _buildNewsletterSection(context) {
+Widget _buildNewsletterSection(BuildContext context) {
     bool isMobile = MediaQuery.of(context).size.width < 600;
-    return Container(
-      width: double.infinity,
-      // padding: EdgeInsets.symmetric(horizontal: 80, vertical: 24),
-         margin:MediaQuery.of(context).size.width > 600?  EdgeInsets.only(left: 24): EdgeInsets.zero,
+  final TextEditingController _controller = TextEditingController();
 
-      child: Wrap(
-        spacing: 48,
-        runSpacing: 16, 
-        crossAxisAlignment:
-            isMobile ? WrapCrossAlignment.center : WrapCrossAlignment.start,
-        alignment: isMobile ? WrapAlignment.center : WrapAlignment.spaceBetween,
+  void _handleSubscription() {
+                  final input = _controller.text;
+                  final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+                  final phoneRegex = RegExp(r'^\+?[0-9]{7,15}$');
 
-        children: [
-          Text(
-            'footer_Subscribe_description'.tr,
-            style: AppStyles.heading2.copyWith(
-              color: AppColors.background,
-              height: 1.2,
+                  if (emailRegex.hasMatch(input) || phoneRegex.hasMatch(input)) {
+      _showMessageDialog(context, true);
+                  } else {
+      _showMessageDialog(context, false);
+                  }
+  }
+
+  return Container(
+    width: double.infinity,
+    margin: MediaQuery.of(context).size.width > 600 ? EdgeInsets.only(left: 24) : EdgeInsets.zero,
+    child: Wrap(
+      spacing: 48,
+      runSpacing: 16,
+      crossAxisAlignment: isMobile ? WrapCrossAlignment.center : WrapCrossAlignment.start,
+      alignment: isMobile ? WrapAlignment.center : WrapAlignment.spaceBetween,
+      children: [
+        Text(
+          'footer_Subscribe_description'.tr,
+          style: AppStyles.heading2.copyWith(
+            color: AppColors.background,
+            height: 1.2,
             ),
           ),
-          Container(
-            width: 360,
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            decoration: BoxDecoration(
-              color: AppColors.darkBackground,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      hintText: 'footer_email_placeholder'.tr,
-                      hintStyle: AppStyles.body1.copyWith(
-                        color: Color(0xFF545664),
-                      ),
-                      border: InputBorder.none,
-                    ),
-                  ),
-                ),
-                Container(
+        Container(
+          width: 360,
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: AppColors.darkBackground,
+            borderRadius: BorderRadius.circular(12),
+      ),
+          child: Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _controller,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    hintText: 'footer_email_placeholder'.tr,
+                    hintStyle: AppStyles.body1.copyWith(
+                      color: Color(0xFF545664),
+        ),
+                    border: InputBorder.none,
+    ),
+                  onSubmitted: (_) => _handleSubscription(),
+        ),
+    ),
+              GestureDetector(
+                onTap: _handleSubscription,
+                child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 28, vertical: 11),
                   decoration: BoxDecoration(
                     color: AppColors.primary,
@@ -101,12 +116,13 @@ final GlobalKey serviceKey;
                     style: AppStyles.button.copyWith(color: AppColors.yellow),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        ),
+      ],
+    ),
+  );
   }
 
   Widget _buildFooterLinks(context) {
@@ -282,6 +298,7 @@ final GlobalKey serviceKey;
     );
   }
 
+
   Widget _buildCopyright(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     bool isMobile = screenWidth < 600;
@@ -316,18 +333,64 @@ final GlobalKey serviceKey;
             alignment: WrapAlignment.center,
             children: [
               GestureDetector(
-                onTap: () => launchUrl(Uri.parse('https://my.lumitel.bi/app/privacy.html')),
-                child: Text('footer_terms'.tr, style: AppStyles.body1)),
+                onTap: () => {
+                  html.window.location.href = 'https://my.lumitel.bi/app/privacy.html'
+                },
+                child: Text('footer_terms'.tr, style: AppStyles.body1),
+              ),
               GestureDetector(
-                onTap: () => launchUrl(Uri.parse('https://my.lumitel.bi/app/privacy.html')),
-                child: Text('footer_privacy'.tr, style: AppStyles.body1)),
+                onTap: () => {
+                  html.window.location.href = 'https://my.lumitel.bi/app/privacy.html'
+                },
+                child: Text('footer_privacy'.tr, style: AppStyles.body1),
+              ),
               GestureDetector(
-                onTap: () => launchUrl(Uri.parse('/')),
-                child: Text('footer_cookies'.tr, style: AppStyles.body1)),
+                onTap: () => {
+                  html.window.location.href = 'https://do-van-nam.github.io/lumitel-landing-page/'
+                },
+                child: Text('footer_cookies'.tr, style: AppStyles.body1),
+              ),
+
+            
             ],
           ),
         ],
       ),
     );
   }
+
+void _showMessageDialog(BuildContext context, bool isSuccessful) {
+  ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+      content: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+            padding: EdgeInsets.all(12),
+            decoration: BoxDecoration(
+          color: isSuccessful ? Colors.green : Colors.red,
+        borderRadius: BorderRadius.circular(12),
+      ),
+            constraints: BoxConstraints(maxWidth: 280),
+            child: Text(
+              isSuccessful
+                  ? 'subscribe_success'.tr
+                  : 'invalid_format'.tr,
+              style: TextStyle(fontSize: 18, color: Colors.white),
+            ),
+          ),
+        ],
+      ),
+      duration: Duration(seconds: 2),
+      behavior: SnackBarBehavior.floating,
+      margin: EdgeInsets.only(bottom: 20, right: 20),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      backgroundColor: Colors.transparent, 
+      elevation: 0, 
+    ),
+  );
+}
+
 }
