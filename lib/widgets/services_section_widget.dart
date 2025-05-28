@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../constants/colors.dart';
 import '../constants/styles.dart';
 
@@ -15,7 +16,7 @@ class ServicesSectionWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'Services',
+            'services_section_title'.tr,
             style: AppStyles.heading1,
             textAlign: TextAlign.center,
           ),
@@ -30,29 +31,30 @@ class ServicesSectionWidget extends StatelessWidget {
               return Icon(Icons.error, size: 32);
             },
           ),
+          SizedBox(height: 16,),
                 _buildServiceCard(
                               'assets/icons/chat_icon.png',
-                              'Chat/Call free',
-                              "Stay connected with unlimited free calls and chats through My Lumitel's user-friendly and reliable communication tools.",
-                            ),
+                              'services_chat_title'.tr,
+                              'services_chat_description'.tr ),
                           SizedBox(height: 16),
-                            _buildServiceCard(
+                            _buildServiceCard( 
                               'assets/icons/video_icon.png',
-                              'Movie/Video',
-                              "Enjoy a vast library of movies and videos, available at your fingertips for endless entertainment.",
+                              'services_movie_title'.tr,
+                              'services_movie_description'.tr,
                             ),
                           SizedBox(height: 16),
                             _buildServiceCard(
                               'assets/icons/music_icon.png',
-                              'Music',
-                              "Discover and listen to a diverse selection of music genres, with an easy-to-use interface for the ultimate listening experience.",
+                              'services_music_title'.tr,
+                              'services_music_description'.tr,
                             ),
                           SizedBox(height: 16),
                             _buildServiceCard(
                               'assets/icons/game_icon.png',
-                              'Game',
-                              "Play a wide variety of engaging games, designed to provide fun and excitement right on your device.",
+                              'services_game_title'.tr,
+                              'services_game_description'.tr,
                             ),
+                            SizedBox(height: 16,)
           ],
         ):  Row(
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,16 +82,16 @@ class ServicesSectionWidget extends StatelessWidget {
                           Expanded(
                             child: _buildServiceCard(
                               'assets/icons/chat_icon.png',
-                              'Chat/Call free',
-                              "Stay connected with unlimited free calls and chats through My Lumitel's user-friendly and reliable communication tools.",
+                              'services_chat_title'.tr,
+                              'services_chat_description'.tr,
                             ),
                           ),
                           SizedBox(width: 16),
                           Expanded(
                             child: _buildServiceCard(
                               'assets/icons/video_icon.png',
-                              'Movie/Video',
-                              "Enjoy a vast library of movies and videos, available at your fingertips for endless entertainment.",
+                              'services_movie_title'.tr,
+                              'services_movie_description'.tr,
                             ),
                           ),
                         ],
@@ -102,16 +104,16 @@ class ServicesSectionWidget extends StatelessWidget {
                           Expanded(
                             child: _buildServiceCard(
                               'assets/icons/music_icon.png',
-                              'Music',
-                              "Discover and listen to a diverse selection of music genres, with an easy-to-use interface for the ultimate listening experience.",
+                              'services_music_title'.tr,
+                              'services_music_description'.tr,
                             ),
                           ),
                           SizedBox(width: 16),
                           Expanded(
                             child: _buildServiceCard(
                               'assets/icons/game_icon.png',
-                              'Game',
-                              "Play a wide variety of engaging games, designed to provide fun and excitement right on your device.",
+                              'services_game_title'.tr,
+                              'services_game_description'.tr,
                             ),
                           ),
                         ],

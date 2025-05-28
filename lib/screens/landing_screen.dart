@@ -19,25 +19,40 @@ class _LandingScreenState extends State<LandingScreen> {
   final GlobalKey homeKey = GlobalKey();
   final GlobalKey footerKey = GlobalKey();
   final GlobalKey downloadKey = GlobalKey();
-bool slider1 = true;
+  bool slider1 = true;
   @override
   Widget build(BuildContext context) {
-   bool isMobile = MediaQuery.of(context).size.width < 1030;
+    bool isMobile = MediaQuery.of(context).size.width < 1030;
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SingleChildScrollView(
+        padding: EdgeInsets.only(bottom: 30),
         child: Column(
           children: [
             Stack(
               children: [
                 Positioned.fill(
-                  child: Image.asset(
-                    slider1 ? 'assets/images/slider1.png' : 'assets/images/slider2.png',
-                    fit: BoxFit.cover,
-                    errorBuilder:
-                        (context, error, stackTrace) => Center(
-                          child: Icon(Icons.error, color: Colors.red, size: 50),
-                        ),
+                  child: AnimatedSwitcher(
+                    duration: Duration(seconds: 1),
+                    switchInCurve: Curves.easeInOut,
+                    switchOutCurve: Curves.easeInOut,
+                    child: SizedBox.expand(
+                        key: ValueKey(slider1),
+                      child: Image.asset(
+                        slider1
+                            ? 'assets/images/slider1.png'
+                            : 'assets/images/slider2.png',
+                        fit: BoxFit.cover,
+                        errorBuilder:
+                            (context, error, stackTrace) => Center(
+                              child: Icon(
+                                Icons.error,
+                                color: Colors.red,
+                                size: 50,
+                              ),
+                            ),
+                      ),
+                    ),
                   ),
                 ),
                 Column(
@@ -50,7 +65,10 @@ bool slider1 = true;
                       downloadKey: downloadKey,
                       slider1: slider1,
                     ),
-                    HeroSectionWidget(slider1:slider1,downloadKey: downloadKey),
+                    HeroSectionWidget(
+                      slider1: slider1,
+                      downloadKey: downloadKey,
+                    ),
                   ],
                 ),
                 // Left and Right Buttons
@@ -60,7 +78,7 @@ bool slider1 = true;
                     top: MediaQuery.of(context).size.height / 2,
                     child: GestureDetector(
                       onTap: () {
-                        if(!slider1){
+                        if (!slider1) {
                           setState(() {
                             slider1 = !slider1;
                           });
@@ -82,7 +100,7 @@ bool slider1 = true;
                     top: MediaQuery.of(context).size.height / 2,
                     child: GestureDetector(
                       onTap: () {
-                        if(slider1){
+                        if (slider1) {
                           setState(() {
                             slider1 = !slider1;
                           });
@@ -110,19 +128,25 @@ bool slider1 = true;
                     child: Row(
                       children: [
                         Container(
-                          width: slider1? 32:8,
+                          width: slider1 ? 32 : 8,
                           height: 8,
                           decoration: BoxDecoration(
-                            color: slider1? AppColors.primary:AppColors.background,
+                            color:
+                                slider1
+                                    ? AppColors.primary
+                                    : AppColors.background,
                             borderRadius: BorderRadius.circular(1000),
                           ),
                         ),
                         SizedBox(width: 8),
                         Container(
-                          width:slider1? 8:32,
+                          width: slider1 ? 8 : 32,
                           height: 8,
                           decoration: BoxDecoration(
-                            color:slider1? AppColors.background:AppColors.yellow,
+                            color:
+                                slider1
+                                    ? AppColors.background
+                                    : AppColors.yellow,
                             borderRadius: BorderRadius.circular(4),
                           ),
                         ),

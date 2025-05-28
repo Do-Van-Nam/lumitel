@@ -192,11 +192,22 @@ Widget buildDownloadOption(
       onTap: () => launchUrl(Uri.parse(link)),
       child: Container(
         width: 170,
-        height: 55,
+        // height: 55,
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 7),
         decoration: BoxDecoration(
-          color: color=='yellow'?  AppColors.yellow : color=='white' ? AppColors.background : AppColors.primary,
+          color: color == 'yellow' 
+              ? AppColors.yellow 
+              : color == 'white' 
+                  ? AppColors.background 
+                  : AppColors.primary,
           borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Color(0x40000000), // #00000040
+              offset: Offset(0, 4),
+              blurRadius: 4,
+            ),
+          ],
         ),
         child: Row(
           children: [
@@ -214,7 +225,7 @@ Widget buildDownloadOption(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 170,
+                  width: 118,
                   child: Text(
                     subtitle,
                     style: TextStyle(
@@ -223,16 +234,22 @@ Widget buildDownloadOption(
                       fontWeight: FontWeight.w400,
                       color: Colors.black,
                     ),
-                    overflow: TextOverflow.ellipsis,
+                    softWrap: true,
+    maxLines: 3,
                   ),
                 ),
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontFamily: AppStyles.googleSans,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.black,
+                SizedBox(
+                  width: 160,
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontFamily: AppStyles.googleSans,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black,
+                    ),
+                    softWrap: true,
+    maxLines: 3,
                   ),
                 ),
               ],

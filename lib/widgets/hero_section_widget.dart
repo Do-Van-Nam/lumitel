@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:get/get.dart';
 import '../constants/colors.dart';
 import '../constants/styles.dart';
 
@@ -29,7 +30,7 @@ class HeroSectionWidget extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: 'One-stop digital lifestyle app',
+                      text: slider1? 'hero_title'.tr : 'lumicare_title'.tr,
                       style: AppStyles.heading1.copyWith(
                         fontSize: 36,
                         height: 1.5,
@@ -41,7 +42,7 @@ class HeroSectionWidget extends StatelessWidget {
               ),
               SizedBox(height: 24),
               Text(
-                "My Lumitel is more than just a mobile app – it's your gateway to seamless communication, entertainment, and account management. Whether you want to connect with loved ones, stream your favorite content, or manage your telecom services, My Lumitel offers it all in one place.",
+               slider1? 'hero_description'.tr : 'lumicare_description'.tr,
                 style: AppStyles.body1.copyWith(
                   fontSize: 18,
                   height: 1.4,
@@ -51,9 +52,9 @@ class HeroSectionWidget extends StatelessWidget {
               SizedBox(height: 24),
               Row(
                 children: [
-                  _buildButton('Download App Lumitel', true),
+                  _buildButton('hero_download_lumitel'.tr, true),
                   SizedBox(width: 24),
-                  _buildButton('Download App LumiCare', false),
+                  _buildButton('hero_download_lumicare'.tr, false),
                 ],
               ),
              
@@ -80,13 +81,13 @@ class HeroSectionWidget extends StatelessWidget {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: 'MY LUMITEL\n',
+                        text: slider1? 'MY LUMITEL\n' : 'LumiCare\n',
                         style: AppStyles.heading1.copyWith(
                           color: AppColors.primary,
                         ),
                       ),
                       TextSpan(
-                        text: 'One-stop digital lifestyle app',
+                        text: slider1? 'hero_title'.tr : 'lumicare_title'.tr,
                         style: AppStyles.heading1.copyWith(
                           fontSize: 36,
                           height: 1.5,
@@ -98,7 +99,7 @@ class HeroSectionWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 24),
                 Text(
-                  "My Lumitel is more than just a mobile app – it's your gateway to seamless communication, entertainment, and account management. Whether you want to connect with loved ones, stream your favorite content, or manage your telecom services, My Lumitel offers it all in one place.",
+                 slider1? 'hero_description'.tr : 'lumicare_description'.tr,
                   style: AppStyles.body1.copyWith(
                     fontSize: 18,
                     height: 1.4,
@@ -108,9 +109,9 @@ class HeroSectionWidget extends StatelessWidget {
                 SizedBox(height: 24),
                 Row(
                   children: [
-                    _buildButton('Download App Lumitel', true),
+                    _buildButton('hero_download_lumitel'.tr, true),
                     SizedBox(width: 24),
-                    _buildButton('Download App LumiCare', false),
+                    _buildButton('hero_download_lumicare'.tr, false),
                   ],
                 ),
                

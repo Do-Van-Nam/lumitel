@@ -35,4 +35,9 @@ final Map<String, String> enUS = {
   'download_on_the': 'Download on the',
   'free_data_usage':'Free Data Usage',
   'download_apk':'Download APK',
+
+  'free_entertainment': 'Free Entertainment',
+
+  'lumicare_title':'The easy and quick way',
+  'lumicare_description':"LumiCare is Lumitel's official mobile application, designed to offer subscribers simple, fast, and secure management of all their telecom services. With LumiCare, each Lumitel customer can view and manage their credits, purchase internet packages, check their SIM ID, and access a full range of services without needing to use USSD or visit the agency.",
 };

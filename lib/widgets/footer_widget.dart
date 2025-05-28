@@ -80,6 +80,7 @@ final GlobalKey serviceKey;
               children: [
                 Expanded(
                   child: TextField(
+                    style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       hintText: 'footer_email_placeholder'.tr,
                       hintStyle: AppStyles.body1.copyWith(
@@ -142,7 +143,7 @@ final GlobalKey serviceKey;
                     ),
                     SizedBox(width: 12),
                     Text(
-                      'MY LUMITEL\nFree entertainment',
+                      'MY LUMITEL\n${'free_entertainment'.tr}',
                       style: AppStyles.heading2.copyWith(
                         color: AppColors.background,
                       ),
@@ -154,13 +155,13 @@ final GlobalKey serviceKey;
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildFooterLink('Home',homeKey),
+                  _buildFooterLink('header_home'.tr,homeKey),
                   SizedBox(height: 16),
-                  _buildFooterLink('Service',serviceKey),
+                  _buildFooterLink('header_service'.tr,serviceKey),
                   SizedBox(height: 16),
-                  _buildFooterLink('Download App',downloadKey),
+                  _buildFooterLink('header_download'.tr,downloadKey),
                   SizedBox(height: 16),
-                  _buildFooterLink('Contact',footerKey),
+                  _buildFooterLink('header_contact'.tr,footerKey),
                 ],
               ),
               SizedBox(height: 16),
@@ -168,59 +169,24 @@ final GlobalKey serviceKey;
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Get the app',
+                    'download'.tr,
                     style: AppStyles.body1.copyWith(color: AppColors.background),
                   ),
                   SizedBox(height: 16),
-                  Container(
-                    width: 160,
-                    height: 48,
-                    decoration: BoxDecoration(
-                      color: AppColors.primary,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          offset: Offset(0, 4),
-                          blurRadius: 4,
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/c6731e856096110c03ee833444b4b1fb50b82b12?placeholderIfAbsent=true',
-                        width: 138,
-                        placeholder:
-                            (context, url) => CircularProgressIndicator(),
-                        errorWidget:
-                            (context, url, error) =>
-                                Icon(Icons.broken_image, color: Colors.grey),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  Container(
-                    width: 160,
-                    height: 48,
-                    decoration: BoxDecoration(
-                      color: AppColors.background,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Center(
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            'https://cdn.builder.io/api/v1/image/assets/1d620c6ad29d40ac88880f4fa962c9bc/4dd215d752f520dd6ff9aa7bf7c48551532f7c09?placeholderIfAbsent=true',
-                        width: 120,
-                        placeholder:
-                            (context, url) => CircularProgressIndicator(),
-                        errorWidget:
-                            (context, url, error) =>
-                                Icon(Icons.broken_image, color: Colors.grey),
-                      ),
-                    ),
-                  ),
-                ],
+                  buildDownloadOption(
+                    'blue',
+                    'assets/icons/google_play.png',
+                    'get_it_on'.tr,
+                    'Google Play',
+                    'https://play.google.com/store/apps/details?id=com.lumitel.superapp'
+                  ), SizedBox(height: 16),
+                  buildDownloadOption(
+                    'white',
+                    'assets/icons/appstore_icon.png',
+                    'download_on_the'.tr,
+                    'App Store',
+                    'https://apps.apple.com/vn/app/my-lumitel/id1586124527'
+                  ),  ],
               ),
             ],
           ),
@@ -253,7 +219,7 @@ final GlobalKey serviceKey;
                   ),
                   SizedBox(width: 12),
                   Text(
-                    'MY LUMITEL\nFree entertainment',
+                    'MY LUMITEL\n${'free_entertainment'.tr}',
                     style: AppStyles.heading2.copyWith(
                       color: AppColors.background,
                     ),
@@ -264,34 +230,34 @@ final GlobalKey serviceKey;
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildFooterLink('Home',homeKey),
+                _buildFooterLink('header_home'.tr,homeKey),
                 SizedBox(height: 16),
-                _buildFooterLink('Service',serviceKey),
+                _buildFooterLink('header_service'.tr,serviceKey),
                 SizedBox(height: 16),
-                _buildFooterLink('Download App',downloadKey),
+                _buildFooterLink('header_download'.tr,downloadKey),
                 SizedBox(height: 16),
-                _buildFooterLink('Contact',footerKey),
+                _buildFooterLink('header_contact'.tr,footerKey),
               ],
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Get the app',
+                  'download'.tr,
                   style: AppStyles.body1.copyWith(color: AppColors.background),
                 ),
                 SizedBox(height: 16),
                 buildDownloadOption(
                     'blue',
                     'assets/icons/google_play.png',
-                    'GET IT ON',
+                    'get_it_on'.tr,
                     'Google Play',
                     'https://play.google.com/store/apps/details?id=com.lumitel.superapp'
                   ),SizedBox(height: 16),
                buildDownloadOption(
                     'white',
                     'assets/icons/appstore_icon.png',
-                    'Download on the',
+                    'download_on_the'.tr,
                     'App Store',
                     'https://apps.apple.com/vn/app/my-lumitel/id1586124527'
                   ),   ],
@@ -340,7 +306,7 @@ final GlobalKey serviceKey;
 
         children: [
           Text(
-            '© 2024 Lumitel Inc. All rights reserved.',
+            'footer_copy_right'.tr,
             style: AppStyles.body1,
             textAlign: TextAlign.center,
           ),
@@ -351,13 +317,13 @@ final GlobalKey serviceKey;
             children: [
               GestureDetector(
                 onTap: () => launchUrl(Uri.parse('https://my.lumitel.bi/app/privacy.html')),
-                child: Text('Terms of Service', style: AppStyles.body1)),
+                child: Text('footer_terms'.tr, style: AppStyles.body1)),
               GestureDetector(
                 onTap: () => launchUrl(Uri.parse('https://my.lumitel.bi/app/privacy.html')),
-                child: Text('Privacy Policy', style: AppStyles.body1)),
+                child: Text('footer_privacy'.tr, style: AppStyles.body1)),
               GestureDetector(
                 onTap: () => launchUrl(Uri.parse('/')),
-                child: Text('Cookies', style: AppStyles.body1)),
+                child: Text('footer_cookies'.tr, style: AppStyles.body1)),
             ],
           ),
         ],

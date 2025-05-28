@@ -35,4 +35,9 @@ final Map<String, String> kiRu = {
   "download_on_the": "Kurungika kuri",
   'free_data_usage':"Gukoresha Amakuru Y'ubuntu",
   'download_apk':'Kurungika APK',
+
+  'free_entertainment': 'Kwinezereza kubuntu',
+
+  'lumicare_title':'Uburyo bworoshye kandi bwihuta',
+  'lumicare_description':"LumiCare ni porogaramu ya telefone ya Lumitel, igenewe guha abakiriya uburyo bworoshe, bwihuta kandi bwizewe bwo gucunga serivisi zose z’itumanaho. Ukoresheje LumiCare, umukiriya wa Lumitel wese ashobora kuraba no gucunga amafaranga ari kuri konti, kugura impapuro za internet, kuraba indangamuntu ya SIM, no kuronka izindi serivisi zose atarinze gukoresha USSD canke kuja ku biro vya Lumitel.",
 };
